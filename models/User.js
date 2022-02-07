@@ -1,15 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
     const Users = sequelize.define('Users', {
-        id: { 
-          type: DataTypes.INTEGER,
-          primaryKey: true,
-          autoIncrement: true, 
-        },
+        id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
         displayName: DataTypes.STRING,
         email: { type: DataTypes.STRING, unique: true },
         password: DataTypes.STRING,
         image: DataTypes.STRING,
-      }, { timestamps: false });    
+      }, { timestamps: false, tableName: 'Users' });    
 
     // Trabalhar no Inner Join de BlogPosts
     // Users.associate = (models) => {
