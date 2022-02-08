@@ -6,6 +6,8 @@ const { LoginVerify } = require('./middlewares/LoginMiddleware');
 const { createUser, getAll, getById } = require('./controllers/UserController');
 const { loginUser } = require('./controllers/LoginController');
 
+const { createCategory } = require('./controllers/CategoriesController');
+
 const app = express();
 app.use(express.json());
 
@@ -21,6 +23,8 @@ app.get('/user', [validateJWT, rescue(getAll)]);
 app.get('/user/:id', [validateJWT, rescue(getById)]);
 
 app.post('/login', LoginVerify, rescue(loginUser));
+
+app.post('/categories', [validateJWT, rescue(createCategory)]);
 
 // Middleware de Erro
 // app.use();
