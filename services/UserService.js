@@ -8,6 +8,11 @@ const createUser = (body) => {
   Users.create({ ...body });
 };
 
+const getAll = async () => {
+  const users = await Users.findAll();
+  return users;
+};
+
 const findUser = async (email) => {
   const emailExists = await Users.findOne({ where: { email } });
   if (emailExists !== null) return emailExists.dataValues;
@@ -16,4 +21,5 @@ const findUser = async (email) => {
 module.exports = {
   createUser,
   findUser,
+  getAll,
 };

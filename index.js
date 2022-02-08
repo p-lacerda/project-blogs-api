@@ -1,9 +1,9 @@
 const express = require('express');
 const rescue = require('express-rescue');
-// const validateJWT = require('./auth/validateJWT');
+const { validateJWT } = require('./auth/validateJWT');
 const { UserVerify } = require('./middlewares/UserMiddleware');
 const { LoginVerify } = require('./middlewares/LoginMiddleware');
-const { createUser } = require('./controllers/UserController');
+const { createUser, getAll } = require('./controllers/UserController');
 const { loginUser } = require('./controllers/LoginController');
 
 const app = express();
@@ -17,4 +17,6 @@ app.get('/', (_request, response) => {
 });
 
 app.post('/user', [UserVerify, rescue(createUser)]);
+app.get('/user', [validateJWT, rescue(getAll)]);
+
 app.post('/login', LoginVerify, rescue(loginUser));
