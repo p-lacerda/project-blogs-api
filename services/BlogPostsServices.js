@@ -9,6 +9,13 @@ const createBlogPost = async (body) => {
   return BlogPost.dataValues;
 };
 
+const getAllBlogPost = async () => {
+  const allBlogPost = await BlogPosts.findAll();
+
+  return allBlogPost;
+};
+
 module.exports = {
   createBlogPost,
+  getAllBlogPost,
 };

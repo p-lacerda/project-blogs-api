@@ -7,9 +7,8 @@ module.exports = (sequelize, DataTypes) => {
         image: DataTypes.STRING,
       }, { timestamps: false, tableName: 'Users' });    
 
-    // Trabalhar no Inner Join de BlogPosts
-    // Users.associate = (models) => {
-    //     Users.hasMany(models.BlogPosts, { as: 'blogPosts', foreingKey: 'userId' });
-    //   };
+    Users.associate = (models) => {
+        Users.hasMany(models.BlogPosts, { as: 'blogPosts', foreingKey: 'userId' });
+      };
     return Users;
   };

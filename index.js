@@ -5,7 +5,7 @@ const { UserVerify } = require('./middlewares/UserMiddleware');
 const { LoginVerify } = require('./middlewares/LoginMiddleware');
 const { createUser, getAll, getById } = require('./controllers/UserController');
 const { loginUser } = require('./controllers/LoginController');
-const { createBlogPost } = require('./controllers/BlogPostsController');
+const { createBlogPost, getAllBlogPost } = require('./controllers/BlogPostsController');
 const { createCategory, getAllCategories } = require('./controllers/CategoriesController');
 
 const app = express();
@@ -28,6 +28,7 @@ app.post('/categories', [validateJWT, rescue(createCategory)]);
 app.get('/categories', [validateJWT, rescue(getAllCategories)]);
 
 app.post('/post', [validateJWT, rescue(createBlogPost)]);
+app.get('/post', [validateJWT, rescue(getAllBlogPost)]);
 
 // Middleware de Erro
 // app.use();
